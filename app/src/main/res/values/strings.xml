@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">androidPrincipies</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="service">Service</string>
+    <string name="fragment">Fragment</string>
+    <string name="stop_service">Stop Service</string>
+</resources>

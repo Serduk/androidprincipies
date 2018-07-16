@@ -35,4 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBroadcastClick(View view) {
     }
+
+    public void onBindingServiceClick(View view) {
+        startActivity(new Intent(this, BoundServiceCheckActivity.class));
+    }
 }

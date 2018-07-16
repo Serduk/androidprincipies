@@ -4,4 +4,5 @@
     <string name="service">Service</string>
     <string name="fragment">Fragment</string>
     <string name="stop_service">Stop Service</string>
+    <string name="binding_service">Binding Service</string>
 </resources>

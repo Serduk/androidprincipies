@@ -28,7 +28,7 @@
         <activity android:name=".BoundServiceCheckActivity" />
 
         <service
-            android:name=".BroadCastReiverEx"
+            android:name=".BroadCastSenderService"
             android:enabled="true"
             android:exported="true" />
 

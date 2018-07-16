@@ -7,11 +7,11 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-public class BroadCastReiverEx extends Service {
+public class BroadCastSenderService extends Service {
     private String LOG_TAG = null;
     private ArrayList<String> mList;
 
-    public BroadCastReiverEx() {
+    public BroadCastSenderService() {
     }
 
     @Override

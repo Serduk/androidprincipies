@@ -25,7 +25,14 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BoundServiceCheckActivity"></activity>
+        <activity android:name=".BoundServiceCheckActivity" />
+
+        <service
+            android:name=".BroadCastReiverEx"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".BroadCastReceiverExampleActivity"></activity>
     </application>
 
 </manifest>

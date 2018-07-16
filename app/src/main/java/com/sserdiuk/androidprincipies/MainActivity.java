@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBroadcastClick(View view) {
+        startActivity(new Intent(this, BroadCastReceiverExampleActivity.class));
     }
 
     public void onBindingServiceClick(View view) {

@@ -1,16 +1,24 @@
 package com.sserdiuk.androidprincipies;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import static com.sserdiuk.androidprincipies.Constans.NOTIFICATION_ID.CHANNEL_ID;
+/**
+ * https://stackoverflow.com/questions/6397754/android-implementing-startforeground-for-a-service
+ *
+ * */
 
 public class ForegroundService extends Service {
     private static final String TAG = ForegroundService.class.getSimpleName();
@@ -52,28 +60,32 @@ public class ForegroundService extends Service {
 
             Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
 
-            Notification notification = new Notification.Builder(this, CHANNEL_ID)
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            String channelId = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? createNotificationChannel(notificationManager) : "";
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
+            Notification notification = notificationBuilder.setOngoing(true)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+//                    .setPriority(PRIORITY_MIN)
+
+                    /**
+                     * FOR UI PART for clickable buttons and etc
+                     * */
 //                    .setContentTitle("Truiton Music Player")
 //                    .setTicker("Truiton Music Player")
 //                    .setContentText("My Music")
 //                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-//                    .setLargeIcon(Bitmap.createScaledBitmap(icon, 128, 128, false))
 //                    .setLargeIcon(icon)
 //                    .setContentIntent(pendingIntent)
-//                    .setOngoing(true)
-//                    .addAction(android.R.drawable.ic_media_previous, "Previous", ppreviousIntent)
-//                    .addAction(android.R.drawable.ic_media_play, "Play", pplayIntent)
-//                    .addAction(android.R.drawable.ic_media_next, "Next", pnextIntent)
-                    .setContentTitle("TITLE")
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .setVisibility(Notification.VISIBILITY_PUBLIC)
-                    .setChannelId(CHANNEL_ID)
-                    .setOnlyAlertOnce(true)
-//                    .setPriority(Notification.PRIORITY_MAX)
-                    .setWhen(System.currentTimeMillis() + 500)
-//                    .setGroup(GROUP)
-                    .setOngoing(true)
+//                    .addAction(android.R.drawable.ic_media_previous,
+//                            "Previous", ppreviousIntent)
+//                    .addAction(android.R.drawable.ic_media_play, "Play",
+//                            pplayIntent)
+//                    .addAction(android.R.drawable.ic_media_next, "Next",
+//                            pnextIntent)
+
+                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
                     .build();
+
 
             startForeground(Constans.NOTIFICATION_ID.FOREGROUND_SERVICE, notification);
 
@@ -96,5 +108,19 @@ public class ForegroundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy in ForeGroundService");
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private String createNotificationChannel(NotificationManager notificationManager) {
+        String channelId = "my_service_channelid";
+        String channelName = "My Foreground Service";
+
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+        // omitted the LED color
+
+        channel.setImportance(NotificationManager.IMPORTANCE_NONE);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        notificationManager.createNotificationChannel(channel);
+        return channelId;
     }
 }

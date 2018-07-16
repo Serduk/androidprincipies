@@ -11,11 +11,15 @@ import android.widget.Chronometer;
 
 /**
  * https://www.truiton.com/2014/11/bound-service-example-android/
- * */
+ */
 public class BoundService extends Service {
     private static String LOG_TAG = "BoundService";
     private IBinder mBinder = new MyBinder();
     private Chronometer mChronometer;
+
+    public BoundService() {
+        Log.v(LOG_TAG, "in BoundService");
+    }
 
     @Override
     public void onCreate() {
@@ -25,9 +29,6 @@ public class BoundService extends Service {
         mChronometer = new Chronometer(this);
         mChronometer.setBase(SystemClock.elapsedRealtime());
         mChronometer.start();
-    }
-
-    public BoundService() {
     }
 
     @Override

@@ -4,9 +4,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +15,20 @@ public class BoundServiceCheckActivity extends AppCompatActivity {
     BoundService mBound;
     boolean mServiceBound = false;
 
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mServiceBound = false;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BoundService.MyBinder myBinder = (BoundService.MyBinder) service;
+            mBound = myBinder.getService();
+            mServiceBound = true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +77,4 @@ public class BoundServiceCheckActivity extends AppCompatActivity {
             mServiceBound = false;
         }
     }
-
-    private ServiceConnection mServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mServiceBound = false;
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            BoundService.MyBinder myBinder = (BoundService.MyBinder) service;
-            mBound = myBinder.getService();
-            mServiceBound = true;
-        }
-    };
 }

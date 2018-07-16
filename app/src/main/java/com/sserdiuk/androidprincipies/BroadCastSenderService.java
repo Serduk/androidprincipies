@@ -7,6 +7,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * https://www.truiton.com/2014/09/android-service-broadcastreceiver-example/
+ * */
 public class BroadCastSenderService extends Service {
     private String LOG_TAG = null;
     private ArrayList<String> mList;

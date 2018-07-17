@@ -4,26 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TestFragment.OnFragmentInteractionListener} interface
+ * {@link TestFragmentTwo.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TestFragment#newInstance} factory method to
+ * Use the {@link TestFragmentTwo#newInstance} factory method to
  * create an instance of this fragment.
- *
- * http://developer.alexanderklimov.ru/android/theory/fragments.php
  */
-public class TestFragment extends Fragment {
-    public static final String TAG = TestFragment.class.getSimpleName();
+public class TestFragmentTwo extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +29,7 @@ public class TestFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public TestFragment() {
+    public TestFragmentTwo() {
         // Required empty public constructor
     }
 
@@ -45,11 +39,11 @@ public class TestFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TestFragment.
+     * @return A new instance of fragment TestFragmentTwo.
      */
     // TODO: Rename and change types and number of parameters
-    public static TestFragment newInstance(String param1, String param2) {
-        TestFragment fragment = new TestFragment();
+    public static TestFragmentTwo newInstance(String param1, String param2) {
+        TestFragmentTwo fragment = new TestFragmentTwo();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,31 +60,11 @@ public class TestFragment extends Fragment {
         }
     }
 
-    Button fragmentButton;
-    TextView textView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_test, container, false);
-
-
-        textView = view.findViewById(R.id.tw_view_fragment);
-//        textView.setText("MY CUSTOM TEXT VIEW");
-
-        fragmentButton = view.findViewById(R.id.btn_test_fragment);
-        fragmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "CLICK LISTENER ADDED");
-            }
-        });
-
-
         // Inflate the layout for this fragment
-        return view;
-
+        return inflater.inflate(R.layout.fragment_test_fragment_two, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -106,9 +80,8 @@ public class TestFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-            Log.d(TAG, "must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -131,9 +104,5 @@ public class TestFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    public void setText(String text) {
-        textView.setText(text);
     }
 }

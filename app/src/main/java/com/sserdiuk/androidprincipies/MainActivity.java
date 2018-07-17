@@ -4,43 +4,36 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements TestFragment.OnFragmentInteractionListener {
     FragmentTransaction ft;
-    FragmentManager fragmentManager;
-    Fragment fragment;
-    Fragment fragment2;
 
-    Fragment testFragment;
+    TestFragment testFragment;
+    TestFragmentTwo testFragmentTwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragment = new TestFragment();
-//        fragment.setText();
+//        testFragment = getFragmentManager().findFragmentById(R.id.fragment_container);
 
+        ft  = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.fragment_placeholder, testFragment);
+        ft.commit();
 
-//        fragmentManager = getFragmentManager();
-//        fragmentManager.beginTransaction()
-//                .remove(fragment1)
-//        .add(R.id.fragment_container, fragment)
-//                .show(fragment2)
-//                .hide(fragment3)
-//        .commit();
     }
 
     public void onFragmentClick(View view) {
-        ft  = getSupportFragmentManager().beginTransaction();
-        testFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        testFragment = new TestFragment();
+        testFragmentTwo = new TestFragmentTwo();
+
         ft.addToBackStack(null);
 //        ft.remove(fragment);
-        ft.replace(R.id.fragment_placeholder, fragment);
+        ft.replace(R.id.fragment_placeholder, testFragmentTwo);
 //        ft.add(fragment, "TAG1");
         ft.commit();
     }
@@ -72,8 +65,5 @@ public class MainActivity extends AppCompatActivity implements TestFragment.OnFr
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        if (fragment != null && fragment.isInLayout()) {
-
-        }
     }
 }

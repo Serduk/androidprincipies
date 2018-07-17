@@ -68,4 +68,18 @@
         app:layout_constraintStart_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
+    <fragment
+        android:id="@+id/fragment_placeholder"
+        android:name="com.sserdiuk.androidprincipies.TestFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/binding_service"
+        app:layout_constraintStart_toStartOf="@+id/binding_service"
+        app:layout_constraintTop_toBottomOf="@+id/binding_service" />
+
 </android.support.constraint.ConstraintLayout>

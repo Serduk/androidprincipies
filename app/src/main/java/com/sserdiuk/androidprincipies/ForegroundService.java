@@ -121,7 +121,8 @@ public class ForegroundService extends Service {
         String channelId = "my_service_channelid";
         String channelName = "My Foreground Service";
 
-        NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel channel = new NotificationChannel(channelId, channelName,
+                NotificationManager.IMPORTANCE_HIGH);
         // omitted the LED color
 
         channel.setImportance(NotificationManager.IMPORTANCE_NONE);

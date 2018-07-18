@@ -133,7 +133,8 @@ public class TestFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void setText(String text) {
-        textView.setText(text);
+    private void tmpMethodForGetingActivity() {
+//        if (getActivity() != null)
+//            Activity act = (MainActivity ) getActivity();
     }
 }

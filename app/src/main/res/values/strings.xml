@@ -2,7 +2,7 @@
     <string name="app_name">androidPrincipies</string>
     <string name="broadcast">Broadcast</string>
     <string name="service">Service</string>
-    <string name="fragment">Fragment</string>
+    <string name="fragment">Fragment ONE</string>
     <string name="stop_service">Stop Service</string>
     <string name="binding_service">Binding Service</string>
 

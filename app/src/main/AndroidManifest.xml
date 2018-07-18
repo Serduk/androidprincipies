@@ -32,7 +32,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BroadCastReceiverExampleActivity"></activity>
+        <activity android:name=".BroadCastReceiverExampleActivity" />
+        <activity android:name=".ForFragmentsTestingActivity"></activity>
     </application>
 
 </manifest>

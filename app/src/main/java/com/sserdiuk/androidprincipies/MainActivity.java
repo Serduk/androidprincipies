@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements TestFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,5 @@ public class MainActivity extends AppCompatActivity implements TestFragment.OnFr
 
     public void onBindingServiceClick(View view) {
         startActivity(new Intent(this, BoundServiceCheckActivity.class));
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
     }
 }

@@ -41,15 +41,17 @@ public class ForFragmentsTestingActivity extends AppCompatActivity {
         ft = fragmentManager.beginTransaction();
 
         fragmentManager.beginTransaction()
+//        ft
                 .add(R.id.fragment_placeholder, testFragment)
                 .addToBackStack("myStack")
                 .commit();
     }
 
     public void onButtonClick(View view) {
-        ft
+//        ft
+        fragmentManager.beginTransaction()
+                .remove(testFragment)
                 .replace(R.id.fragment_placeholder, testFragmentTwo)
-//                .remove(testFragment)
                 .commit();
     }
 }

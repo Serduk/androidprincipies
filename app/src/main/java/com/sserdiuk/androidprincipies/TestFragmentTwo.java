@@ -1,5 +1,6 @@
 package com.sserdiuk.androidprincipies;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -64,7 +66,12 @@ public class TestFragmentTwo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_test_fragment_two, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_test_fragment_two, container, false);
+
+        Button button = view.findViewById(R.id.btn_fragment2);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,6 +86,7 @@ public class TestFragmentTwo extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
+            someEventListener = (OnSomeEventListener) context;
         } else {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnFragmentInteractionListener");
@@ -105,4 +113,10 @@ public class TestFragmentTwo extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public interface OnSomeEventListener {
+        void someEvent(String s);
+    }
+
+    OnSomeEventListener someEventListener;
 }

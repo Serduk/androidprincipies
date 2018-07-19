@@ -40,18 +40,24 @@ public class ForFragmentsTestingActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         ft = fragmentManager.beginTransaction();
 
-        fragmentManager.beginTransaction()
-//        ft
-                .add(R.id.fragment_placeholder, testFragment)
+//        fragmentManager.beginTransaction()
+//                .add(R.id.fragment_placeholder, testFragment)
+//                .addToBackStack("myStack")
+//                .commit();
+        ft.add(R.id.fragment_container_placeholder, testFragment)
                 .addToBackStack("myStack")
                 .commit();
     }
 
     public void onButtonClick(View view) {
-//        ft
-        fragmentManager.beginTransaction()
-                .remove(testFragment)
-                .replace(R.id.fragment_placeholder, testFragmentTwo)
+//        fragmentManager.beginTransaction()
+//                .remove(testFragment)
+//                .replace(R.id.fragment_placeholder, testFragmentTwo)
+//                .commit();
+
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, testFragmentTwo)
+                .addToBackStack("myStack")
                 .commit();
     }
 }

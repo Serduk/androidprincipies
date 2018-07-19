@@ -15,6 +15,7 @@
 
     <Button
         android:id="@+id/btn_fragment2"
+        android:text="@string/button_two"
         android:layout_below="@id/tv_fragment2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -33,7 +33,13 @@
             android:exported="true" />
 
         <activity android:name=".BroadCastReceiverExampleActivity" />
-        <activity android:name=".ForFragmentsTestingActivity"></activity>
+        <activity android:name=".ForFragmentsTestingActivity" />
+        <activity android:name=".ServicesActivityExamples" />
+
+        <service
+            android:name=".MyServiceStartAndroidLessons"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

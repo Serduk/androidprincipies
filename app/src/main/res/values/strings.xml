@@ -12,4 +12,5 @@
     <string name="my_default_text_from_activity">My Default Text from Activity</string>
     <string name="Services">Button</string>
     <string name="start_service">start service</string>
+    <string name="lesson_95_start">lesson 95 start</string>
 </resources>

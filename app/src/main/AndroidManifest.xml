@@ -34,10 +34,14 @@
 
         <activity android:name=".BroadCastReceiverExampleActivity" />
         <activity android:name=".ForFragmentsTestingActivity" />
-        <activity android:name=".ServicesActivityExamples" />
+        <activity android:name=".StartAndroidServicesActivityExamples" />
 
         <service
             android:name=".MyServiceStartAndroidLessons"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".StartAndroidMyService"
             android:enabled="true"
             android:exported="true"></service>
     </application>

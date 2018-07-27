@@ -43,10 +43,15 @@
         <service
             android:name=".StartAndroidMyService"
             android:enabled="true"
+            android:exported="true" />
+        <service android:name=".StartAndroidMyServiceBroadcast" />
+
+        <activity android:name=".StartAndroidLocalBindingServicesActivity" />
+
+        <service
+            android:name=".StartAndroidLocalBinding"
+            android:enabled="true"
             android:exported="true"></service>
-
-
-        <service android:name=".StartAndroidMyServiceBroadcast"/>
     </application>
 
 </manifest>

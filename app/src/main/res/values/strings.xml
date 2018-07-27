@@ -13,4 +13,5 @@
     <string name="Services">Button</string>
     <string name="start_service">start service</string>
     <string name="lesson_95_start">lesson 95 start</string>
+    <string name="startandroidbroadcastexample">StartAndroidBroadCastExample</string>
 </resources>

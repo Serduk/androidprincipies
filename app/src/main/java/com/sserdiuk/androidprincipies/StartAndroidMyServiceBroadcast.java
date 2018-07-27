@@ -4,19 +4,16 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class StartAndroidMyService extends Service {
-    final private String TAG = StartAndroidMyService.class.getSimpleName();
-
+public class StartAndroidMyServiceBroadcast extends Service {
+    final String TAG = StartAndroidMyServiceBroadcast.class.getSimpleName();
     ExecutorService executorService;
-
-    public StartAndroidMyService() {
-    }
 
     @Override
     public void onCreate() {
@@ -29,6 +26,7 @@ public class StartAndroidMyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         Log.d(TAG, "onDestroy");
     }
 
@@ -36,43 +34,52 @@ public class StartAndroidMyService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
 
-        int time = intent.getIntExtra(StartAndroidServicesActivityExamples.PARAM_PINTENT, 1);
-        PendingIntent pi = intent.getParcelableExtra(StartAndroidServicesActivityExamples.PARAM_PINTENT);
+        int time = intent.getIntExtra(StartAndroidServicesActivityExamples.PARAM_TIME, 1);
+        int task = intent.getIntExtra(StartAndroidServicesActivityExamples.PARAM_TASK, 0);
 
-        MyRun mr = new MyRun(time, startId, pi);
+        MyRun mr = new MyRun(startId, time, task);
         executorService.execute(mr);
 
         return super.onStartCommand(intent, flags, startId);
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
 
     class MyRun implements Runnable {
+
         int time;
         int startId;
-        PendingIntent pi;
+        int task;
 
-        MyRun(int time, int startId, PendingIntent pi) {
+        MyRun(int time, int startId, int task) {
             this.time = time;
             this.startId = startId;
-            this.pi = pi;
+            this.task = task;
             Log.d(TAG, "MyRun#" + startId + " create");
         }
 
         @Override
         public void run() {
+            Intent intent = new Intent(StartAndroidServicesActivityExamples.BROADCAST_ACTION);
             Log.d(TAG, "MyRun#" + startId + " start, time = " + time);
             try {
-                pi.send(StartAndroidServicesActivityExamples.STATUS_START);
+                intent.putExtra(StartAndroidServicesActivityExamples.PARAM_TASK, task);
+                intent.putExtra(StartAndroidServicesActivityExamples.PARAM_STATUS,
+                        StartAndroidServicesActivityExamples.STATUS_START);
+
+                sendBroadcast(intent);
 
                 TimeUnit.SECONDS.sleep(time);
 
-                Intent intent = new Intent().putExtra(StartAndroidServicesActivityExamples.PARAM_RESULT, time * 100);
-                pi.send(StartAndroidMyService.this, StartAndroidServicesActivityExamples.STATUS_FINISH, intent);
-            } catch (InterruptedException | PendingIntent.CanceledException ex) {
+                intent.putExtra(StartAndroidServicesActivityExamples.PARAM_STATUS, StartAndroidServicesActivityExamples.STATUS_FINISH);
+                intent.putExtra(StartAndroidServicesActivityExamples.PARAM_RESULT, time * 100);
+                sendBroadcast(intent);
+
+            } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
             stop();
